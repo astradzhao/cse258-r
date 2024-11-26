@@ -1,0 +1,17 @@
+For my read predictions, I prepared a feature vector consisting of:
+- the amount of times a book has been read
+- the amount of times a user has read a book
+- the max jaccard similarity between books
+- the avg jaccard similarity between books
+- the max cosine similarity between users
+- the avg cosine similarity between users
+
+I then trained a logistic regression model on this with C = 0.005 (after tuning this regularization hyperparameter).
+
+I used this logistic regression model to make predictions, separating the top half of the prediction probabilities to be "read" (1) and the bottom half to be "unread" (0).
+
+
+For my rating predictions, I simply used the SVD library from sklearn-surprise. I did a grid search on the learning rate and regularization hyperparameters.
+I also tried using an ensemble method with an SVD and KNN model, which didn't really end up working. I also tried using SVD++ from the same library, but it actually underperformed SVD.
+
+Ultimately I simply ended up using my SVD model with tuned hyperparameters.
